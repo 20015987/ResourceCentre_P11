@@ -147,12 +147,18 @@ public class ResourceCentre {
 	public static String retrieveAllChromebook(ArrayList<Chromebook> chromebookList) {
 		String output = "";
 		// write your code here
-		for (int i = 0; i < chromebookList.size(); i++) {
-
-			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", chromebookList.get(i).getAssetTag(),
-					chromebookList.get(i).getDescription(), 
-					ResourceCentre.showAvailability(chromebookList.get(i).getIsAvailable()),
-					chromebookList.get(i).getDueDate(),chromebookList.get(i).getOs());
+		int chromebookListSize = chromebookList.size(); // Refactor -> Extracted Local Variable (Done by: 20015987)
+		for (int i = 0; i < chromebookListSize; i++) {
+			// ------(Start) Refactor -> Extracted Local Variable (Done by: 20015987)
+			String chromebookAssetTag = chromebookList.get(i).getAssetTag();
+			String chromebookDescription = chromebookList.get(i).getDescription();
+			String chromebookAvailability = ResourceCentre.showAvailability(chromebookList.get(i).getIsAvailable());
+			String chromebookDueDate = chromebookList.get(i).getDueDate();
+			String chromebookOs = chromebookList.get(i).getOs();
+			// ------(End)
+			output += String.format("%-10s %-30s %-10s %-10s %-20s\n",
+					chromebookAssetTag, chromebookDescription, 
+					chromebookAvailability, chromebookDueDate, chromebookOs);
 		}
 		return output;
 	}
