@@ -129,18 +129,10 @@ public class ResourceCentre {
 
 		for (int i = 0; i < camcorderList.size(); i++) {
 
-			// Done by 20030570 aka S.Sai Vishwanath
-			String camcorderAssetTag = camcorderList.get(i).getAssetTag();
-			String camcorderDescription = camcorderList.get(i).getDescription();
-			String camcorderAvailability = ResourceCentre.showAvailability(camcorderList.get(i).getIsAvailable());
-			String camcorderDueDate = camcorderList.get(i).getDueDate();
-			int camcorderOpticalZoom = camcorderList.get(i).getOpticalZoom();
-			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", camcorderAssetTag,
-					camcorderDescription, 
-					camcorderAvailability,
-					camcorderDueDate,camcorderOpticalZoom);
-			// Done by 20030570 aka Sai Vishwanath **
-			
+			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", camcorderList.get(i).getAssetTag(),
+					camcorderList.get(i).getDescription(), 
+					ResourceCentre.showAvailability(camcorderList.get(i).getIsAvailable()),
+					camcorderList.get(i).getDueDate(),camcorderList.get(i).getOpticalZoom());
 		}
 		return output;
 	}
@@ -284,8 +276,12 @@ public class ResourceCentre {
 		boolean isReturned = false;
 
 		for (int i = 0; i < camcorderList.size(); i++) {
-			if (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag())
-					&& camcorderList.get(i).getIsAvailable() == false) {
+			
+			String assetTag = camcorderList.get(i).getAssetTag();
+			boolean available = camcorderList.get(i).getIsAvailable();
+			// ------(Start) Refactor -> Extracted Local Variable (Done by: 20032405)
+			if (tag.equalsIgnoreCase(assetTag)&& available == false) {
+			// ------(End)
 				camcorderList.get(i).setIsAvailable(true);
 				camcorderList.get(i).setDueDate("");
 				isReturned = true;
@@ -312,8 +308,11 @@ public class ResourceCentre {
 		boolean isReturned = false;
 
 		for (int i = 0; i < chromebookList.size(); i++) {
-			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
-					&& chromebookList.get(i).getIsAvailable() == false) {
+			String assetTag = chromebookList.get(i).getAssetTag();
+			boolean available = chromebookList.get(i).getIsAvailable();
+			// ------(Start) Refactor -> Extracted Local Variable (Done by: 20032405)
+			if (tag.equalsIgnoreCase(assetTag)&& available == false) {
+			// ------(End)
 				chromebookList.get(i).setIsAvailable(true);
 				chromebookList.get(i).setDueDate("");
 				isReturned = true;
