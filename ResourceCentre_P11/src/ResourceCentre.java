@@ -139,7 +139,7 @@ public class ResourceCentre {
 					camcorderDescription, 
 					camcorderAvailability,
 					camcorderDueDate,camcorderOpticalZoom);
-			// Done by 20030570 aka S.Sai Vishwanath
+			// Done by 20030570 aka Sai Vishwanath **
 			
 		}
 		return output;
